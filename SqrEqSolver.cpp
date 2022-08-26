@@ -163,6 +163,7 @@ void SqrEqSolverMode()
         printf("To solve your square equation enter 1.\n");
         printf("To start tests enter 2.\n");
         printf("To start tests from a file enter 3.\n");
+        printf("To start random test enter 4.\n");
         printf("To stop the program enter any other value.\n");
         if (scanf("%d", &ModeSelection) != 1)
         {
@@ -214,6 +215,12 @@ void SqrEqSolverMode()
                 printf("\n");
                 break;
             }
+        }
+        else if (ModeSelection == 4)
+        {
+            CleaningBuffer();
+            RandomTest();
+            continue;
         }
         else
             CleaningBuffer();
@@ -294,4 +301,13 @@ void SolverOutput(double x1, double x2, int nRoots)
             break;
     }
     printf("\n");
+}
+
+void RandomTest()
+{
+    double a = rand(), b = rand(), c = rand(), discr = 0, x1 = 0, x2 = 0;
+    int nRoots = 0;
+    printf("Coefficients: %lg %lg %lg\n", a, b, c);
+    SolveSolution(a, b, c, &discr, &x1, &x2, &nRoots);
+    SolverOutput(x1, x2, nRoots);
 }

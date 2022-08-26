@@ -125,5 +125,9 @@ void SolveSolution(double a, double b, double c, double *discr, double *x1, doub
  * @param nRoots Number of roots.
  */
 void SolverOutput(double x1, double x2, int nRoots);
+/**
+ * @brief Runs the solution of an equation with random coefficients and displays the number of roots and their values.
+ */
+void RandomTest();
 
 #endif //UNTITLED3_SQREQSOLVER_H
