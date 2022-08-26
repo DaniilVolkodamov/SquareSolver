@@ -15,24 +15,113 @@ enum NUMBERS
     INF_ROOTS,
 };
 
+/**
+ * @brief Checks if two doubles are equal.
+ * @param arg1 First number.
+ * @param arg2 Second number.
+ * @return 1 if doubles are equal and 0 if not.
+ */
 int isDoubleEq(double arg1, double arg2);
+/**
+ * @brief Checks if double number is equal zero.
+ * @param arg Double number.
+ * @return 1 if double equal zero and 0 if not.
+ */
 int isDoubleZero(double arg);
 
+/**
+ * @brief Clears the buffer.
+ */
 void CleaningBuffer();
 
+/**
+ * @brief Runs 25 tests and displays error information.
+ * @return Number of successfully passed tests.
+ */
 int TestSqrEq();
+/**
+ * @brief Runs 25 tests from a file and displays error information.
+ * @return Number of successfully passed tests.
+ */
+int FTestSqrEq();
+/**
+ * @brief Runs one test.
+ * @detailed Solves the equation by given coefficients and compares the result with the correct answer.
+ * @param a_test First coefficient of the quadratic equation.
+ * @param b_test Second coefficient of the quadratic equation.
+ * @param c_test Third coefficient of the quadratic equation.
+ * @param nRoots_test Correct number of roots.
+ * @param x1_test Correct first root.
+ * @param x2_test Correct second root.
+ * @return 1 if number of roots and their values match the correct ones and 0 if not.
+ */
 int OneSqrEqTest(double a_test, double b_test, double c_test, int nRoots_test, double x1_test, double x2_test);
 
+/**
+ * @brief Finds number of roots of a linear equation.
+ * @param b First coefficient of the linear equation.
+ * @param c Second coefficient of the linear equation.
+ * @return Number of roots.
+ */
 int LinNumOfRoots(double b, double c);
+/**
+ * @brief Finds number of roots of a quadratic equation.
+ * @param discr Discriminant value.
+ * @return Number of roots.
+ */
 int SqrNumOfRoots(double discr);
 
+/**
+ * @brief Solves the linear equation
+ * @param b First coefficient of the linear equation.
+ * @param c Second coefficient of the linear equation.
+ * @param x1 Linear equation root.
+ * @param x2 Linear equation root (equal to x1).
+ */
 void LinearSolver(double b, double c, double *x1, double *x2);
+/**
+ * Solves the quadratic equation
+ * @param a First coefficient of the quadratic equation.
+ * @param b Second coefficient of the quadratic equation.
+ * @param discr Discriminant value.
+ * @param x1 First root.
+ * @param x2 Second root.
+ */
 void SquareSolver(double a, double b, double discr, double *x1, double *x2);
 
+/**
+ * @brief Allows the user to select the mode of the program.
+ * @detailed Function asks for some value: 1 - solves the user equation, 2 - runs tests,
+ * 3 - runs tests from a file, any other value - stops the program.
+ */
 void SqrEqSolverMode();
 
+/**
+ * @brief Gets 3 doubles for a, b, c coefficients.
+ * @detailed Gives the user 5 attempts to enter. If all are unsuccessful, the program stops.
+ * @param a First coefficient of the quadratic equation.
+ * @param b Second coefficient of the quadratic equation.
+ * @param c Third coefficient of the quadratic equation.
+ * @return 1 if the input is successful and 0 if not.
+ */
 int SolverInput(double *a, double *b, double *c);
-int SolveSolution(double a, double b, double c, double *discr, double *x1, double*x2, int *nRoots);
+/**
+ * @brief Determines the form of the equation and solves it.
+ * @param a First coefficient of the quadratic equation.
+ * @param b Double coefficient of the quadratic equation.
+ * @param c Third coefficient of the quadratic equation.
+ * @param discr Discriminant.
+ * @param x1 First root.
+ * @param x2 Second root.
+ * @param nRoots Number of roots.
+ */
+void SolveSolution(double a, double b, double c, double *discr, double *x1, double*x2, int *nRoots);
+/**
+ * @brief Prints the number of roots and their values.
+ * @param x1 First root.
+ * @param x2 Second root.
+ * @param nRoots Number of roots.
+ */
 void SolverOutput(double x1, double x2, int nRoots);
 
 #endif //UNTITLED3_SQREQSOLVER_H
