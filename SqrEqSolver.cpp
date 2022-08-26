@@ -47,7 +47,7 @@ int TestSqrEq()
     okTests += OneSqrEqTest( -0,  -0, 154,  NO_ROOTS,    0,   0);
     okTests += OneSqrEqTest(  0,  12, 600,  ONE_ROOT,  -50, -50);
     okTests += OneSqrEqTest( -0, 963,  -0,  ONE_ROOT,    0,   0);
-    printf("Successfully completed tests: %d/%d.\n", okTests, 25);
+    printf("Successfully completed tests: %d/%d.\n", okTests, NUMBER_OF_TESTS);
     return okTests;
 }
 int FTestSqrEq()
@@ -63,7 +63,7 @@ int FTestSqrEq()
         okTests += OneSqrEqTest(a, b, c, nRoots, x1, x2);
     }
     fclose(tests);
-    printf("Successfully completed tests: %d/%d.\n", okTests, 25);
+    printf("Successfully completed tests: %d/%d.\n", okTests, NUMBER_OF_TESTS);
     return okTests;
 }
 int OneSqrEqTest(double a_test, double b_test, double c_test, int nRoots_test, double x1_test, double x2_test)
@@ -185,36 +185,18 @@ void SqrEqSolverMode()
         else if (ModeSelection == 2)
         {
             CleaningBuffer();
-            if (TestSqrEq() == 25)
-            {
-                printf("The program works correctly.\n");
-                printf("\n");
+            if (TestDiagnostics(TestSqrEq()))
                 continue;
-            }
             else
-            {
-                printf("The program does not works correctly.\n");
-                printf("Try to use it later.\n");
-                printf("\n");
                 break;
-            }
         }
         else if (ModeSelection == 3)
         {
             CleaningBuffer();
-            if (FTestSqrEq() == 25)
-            {
-                printf("The program works correctly.\n");
-                printf("\n");
+            if (TestDiagnostics(FTestSqrEq()))
                 continue;
-            }
             else
-            {
-                printf("The program does not works correctly.\n");
-                printf("Try to use it later.\n");
-                printf("\n");
                 break;
-            }
         }
         else if (ModeSelection == 4)
         {
@@ -305,9 +287,29 @@ void SolverOutput(double x1, double x2, int nRoots)
 
 void RandomTest()
 {
-    double a = rand(), b = rand(), c = rand(), discr = 0, x1 = 0, x2 = 0;
+    double a = 0, b = 0, c = 0, discr = 0, x1 = 0, x2 = 0;
     int nRoots = 0;
+    a = rand();
+    b = rand();
+    c = rand();
     printf("Coefficients: %lg %lg %lg\n", a, b, c);
     SolveSolution(a, b, c, &discr, &x1, &x2, &nRoots);
     SolverOutput(x1, x2, nRoots);
+}
+
+int TestDiagnostics(int TestsNumber)
+{
+    if (TestsNumber == NUMBER_OF_TESTS)
+    {
+        printf("The program works correctly.\n");
+        printf("\n");
+        return 1;
+    }
+    else
+    {
+        printf("The program does not works correctly.\n");
+        printf("Try to use it later.\n");
+        printf("\n");
+        return 0;
+    }
 }

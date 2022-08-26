@@ -1,6 +1,7 @@
 #ifndef UNTITLED3_SQREQSOLVER_H
 #define UNTITLED3_SQREQSOLVER_H
 #define SMALL_NUMBER 1e-15
+#define NUMBER_OF_TESTS 25
 #define ASSERT(condition) \
 { \
 if (!(condition)) \
@@ -125,9 +126,16 @@ void SolveSolution(double a, double b, double c, double *discr, double *x1, doub
  * @param nRoots Number of roots.
  */
 void SolverOutput(double x1, double x2, int nRoots);
+
 /**
  * @brief Runs the solution of an equation with random coefficients and displays the number of roots and their values.
  */
 void RandomTest();
 
+/**
+ * @brief Informs the user that the program is working correctly/incorrectly
+ * @param TestsNumber The number of correctly completed tests.
+ * @return 1 if all tests are correct and 0 if not.
+*/
+int TestDiagnostics(int TestsNumber);
 #endif //UNTITLED3_SQREQSOLVER_H
