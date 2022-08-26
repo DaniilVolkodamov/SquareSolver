@@ -53,6 +53,7 @@ int FTestSqrEq();
  * @param nRoots_test Correct number of roots.
  * @param x1_test Correct first root.
  * @param x2_test Correct second root.
+ * @throw Failed, Expected If the results do not match the correct answer, function displays error information.
  * @return 1 if number of roots and their values match the correct ones and 0 if not.
  */
 int OneSqrEqTest(double a_test, double b_test, double c_test, int nRoots_test, double x1_test, double x2_test);
@@ -80,7 +81,7 @@ int SqrNumOfRoots(double discr);
  */
 void LinearSolver(double b, double c, double *x1, double *x2);
 /**
- * Solves the quadratic equation
+ * @brief Solves the quadratic equation
  * @param a First coefficient of the quadratic equation.
  * @param b Second coefficient of the quadratic equation.
  * @param discr Discriminant value.
@@ -114,6 +115,7 @@ int SolverInput(double *a, double *b, double *c);
  * @param x1 First root.
  * @param x2 Second root.
  * @param nRoots Number of roots.
+ * @throw FormatError If the entered values are not numbers.
  */
 void SolveSolution(double a, double b, double c, double *discr, double *x1, double*x2, int *nRoots);
 /**
