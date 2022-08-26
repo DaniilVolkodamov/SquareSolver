@@ -22,33 +22,47 @@ void CleaningBuffer()
 int TestSqrEq()
 {
     int okTests = 0;
-    double discr = 0, x1 = 0, x2 = 0;
-    int nRoots = 0;
-    okTests += OneSqrEqTest(0, 0, 0, INF_ROOTS, 0, 0);
-    okTests += OneSqrEqTest(0, 0, -4, 0, 0, 0);
-    okTests += OneSqrEqTest(0, -8, 0, 1, 0, 0);
-    okTests += OneSqrEqTest(0, 5, -5, 1, 1, 1);
-    okTests += OneSqrEqTest(174, 0, 0, 1, 0, 0);
-    okTests += OneSqrEqTest(1, 0, -4, 2, -2, 2);
-    okTests += OneSqrEqTest(8, 4, 0, 2, -0.5, 0);
-    okTests += OneSqrEqTest(1, -14, 48, 2, 6, 8);
-    okTests += OneSqrEqTest(1, 6, 9, 1, -3, -3);
-    okTests += OneSqrEqTest(1, 1, 1, 0, 0, 0);
-    okTests += OneSqrEqTest(2, -3, 1, 2, 0.5, 1);
-    okTests += OneSqrEqTest(-1, -15, -50, 2, -10, -5);
-    okTests += OneSqrEqTest(1, 2, 5, 0, 0, 0);
-    okTests += OneSqrEqTest(0, 10, -8, 1, 0.8, 0.8);
-    okTests += OneSqrEqTest(1, -8, 16, 1, 4, 4);
-    okTests += OneSqrEqTest(0, -2, -6, 1, -3, -3);
-    okTests += OneSqrEqTest(1, -16, 63, 2, 7, 9);
-    okTests += OneSqrEqTest(7, 5, 6, 0, 0, 0);
-    okTests += OneSqrEqTest(-1, -4, -4, 1, -2, -2);
-    okTests += OneSqrEqTest(-0, -0, -0, INF_ROOTS, 0, 0);
-    okTests += OneSqrEqTest(5, 1, -4, 2, -1, 0.8);
-    okTests += OneSqrEqTest(0.5, -3, 4.5, 1, 3, 3);
-    okTests += OneSqrEqTest(-0, -0, 154, 0, 0, 0);
-    okTests += OneSqrEqTest(0, 12, 600, 1, -50, -50);
-    okTests += OneSqrEqTest(-0, 963, -0, 1, 0, 0);
+    okTests += OneSqrEqTest(  0,   0,   0, INF_ROOTS,    0,   0);
+    okTests += OneSqrEqTest(  0,   0,  -4,  NO_ROOTS,    0,   0);
+    okTests += OneSqrEqTest(  0,  -8,   0,  ONE_ROOT,    0,   0);
+    okTests += OneSqrEqTest(  0,   5,  -5,  ONE_ROOT,    1,   1);
+    okTests += OneSqrEqTest(174,   0,   0,  ONE_ROOT,    0,   0);
+    okTests += OneSqrEqTest(  1,   0,  -4, TWO_ROOTS,   -2,   2);
+    okTests += OneSqrEqTest(  8,   4,   0, TWO_ROOTS, -0.5,   0);
+    okTests += OneSqrEqTest(  1, -14,  48, TWO_ROOTS,    6,   8);
+    okTests += OneSqrEqTest(  1,   6,   9,  ONE_ROOT,   -3,  -3);
+    okTests += OneSqrEqTest(  1,   1,   1,  NO_ROOTS,    0,   0);
+    okTests += OneSqrEqTest(  2,  -3,   1, TWO_ROOTS,  0.5,   1);
+    okTests += OneSqrEqTest( -1, -15, -50, TWO_ROOTS,  -10,  -5);
+    okTests += OneSqrEqTest(  1,   2,   5,  NO_ROOTS,    0,   0);
+    okTests += OneSqrEqTest(  0,  10,  -8,  ONE_ROOT,  0.8, 0.8);
+    okTests += OneSqrEqTest(  1,  -8,  16,  ONE_ROOT,    4,   4);
+    okTests += OneSqrEqTest(  0,  -2,  -6,  ONE_ROOT,   -3,  -3);
+    okTests += OneSqrEqTest(  1, -16,  63, TWO_ROOTS,    7,   9);
+    okTests += OneSqrEqTest(  7,   5,   6,  NO_ROOTS,    0,   0);
+    okTests += OneSqrEqTest( -1,  -4,  -4,  ONE_ROOT,   -2,  -2);
+    okTests += OneSqrEqTest( -0,  -0,  -0, INF_ROOTS,    0,   0);
+    okTests += OneSqrEqTest(  5,   1,  -4, TWO_ROOTS,   -1, 0.8);
+    okTests += OneSqrEqTest(0.5,  -3, 4.5,  ONE_ROOT,    3,   3);
+    okTests += OneSqrEqTest( -0,  -0, 154,  NO_ROOTS,    0,   0);
+    okTests += OneSqrEqTest(  0,  12, 600,  ONE_ROOT,  -50, -50);
+    okTests += OneSqrEqTest( -0, 963,  -0,  ONE_ROOT,    0,   0);
+    printf("Successfully completed tests: %d/%d.\n", okTests, 25);
+    return okTests;
+}
+int FTestSqrEq()
+{
+    int okTests = 0, i;
+    double a = 0, b = 0, c = 0, x1 = 0, x2 = 0;
+    int nRoots = 1;
+    FILE *tests;
+    tests = fopen("C:/Projects/SquareEquationSolver/Project/SqrEqTests.txt", "r");
+    for (i = 0; i < 25; i++)
+    {
+        fscanf(tests, "%lg %lg %lg %d %lg %lg", &a, &b, &c, &nRoots, &x1, &x2);
+        okTests += OneSqrEqTest(a, b, c, nRoots, x1, x2);
+    }
+    fclose(tests);
     printf("Successfully completed tests: %d/%d.\n", okTests, 25);
     return okTests;
 }
@@ -148,6 +162,7 @@ void SqrEqSolverMode()
         int ModeSelection = 0;
         printf("To solve your square equation enter 1.\n");
         printf("To start tests enter 2.\n");
+        printf("To start tests from a file enter 3.\n");
         printf("To stop the program enter any other value.\n");
         if (scanf("%d", &ModeSelection) != 1)
         {
@@ -183,9 +198,26 @@ void SqrEqSolverMode()
                 break;
             }
         }
+        else if (ModeSelection == 3)
+        {
+            CleaningBuffer();
+            if (FTestSqrEq() == 25)
+            {
+                printf("The program works correctly.\n");
+                printf("\n");
+                continue;
+            }
+            else
+            {
+                printf("The program does not works correctly.\n");
+                printf("Try to use it later.\n");
+                printf("\n");
+                break;
+            }
+        }
         else
             CleaningBuffer();
-            printf("Program ended");
+            printf("Program ended.");
         break;
     }
 }
@@ -224,7 +256,7 @@ int SolverInput(double *a, double *b, double *c)
     }
     return 0;
 }
-int SolveSolution(double a, double b, double c, double *discr, double *x1, double *x2, int *nRoots)
+void SolveSolution(double a, double b, double c, double *discr, double *x1, double *x2, int *nRoots)
 {
     ASSERT(discr);
     ASSERT(x1);
