@@ -7,6 +7,7 @@ int isDoubleEq(double arg1, double arg2)
 {
     if (fabs(arg1 - arg2) < SMALL_NUMBER)
         return 1;
+
     return 0;
 }
 
@@ -54,6 +55,7 @@ int TestSqrEq()
     okTests += OneSqrEqTest( -0, 963,  -0,  ONE_ROOT,    0,   0);
 
     printf("Successfully completed tests: %d/%d.\n", okTests, NUMBER_OF_TESTS);
+
     return okTests;
 }
 
@@ -73,6 +75,7 @@ int FTestSqrEq()
     fclose(tests);
 
     printf("Successfully completed tests: %d/%d.\n", okTests, NUMBER_OF_TESTS);
+
     return okTests;
 }
 
@@ -90,6 +93,7 @@ int OneSqrEqTest(double a_test, double b_test, double c_test, int nRoots_test, d
          a_test, b_test, c_test, nRoots, x1, x2, nRoots_test, x1_test, x2_test);
         return 0;
     }
+
     return 1;
 }
 
@@ -170,19 +174,12 @@ void SquareSolver(double a, double b, double c, double discr, double *x1, double
 
 void SqrEqSolverMode()
 {
-    printf("Square equation solver.\n");
 
     while (1 > 0)
     {
         double a = 0, b = 0, c = 0, discr = 0, x1 = 0, x2 = 0;
         int nRoots = 0;
         int ModeSelection = 0;
-
-        printf("To solve your square equation enter 1.\n");
-        printf("To start tests enter 2.\n");
-        printf("To start tests from a file enter 3.\n");
-        printf("To start random test enter 4.\n");
-        printf("To stop the program enter any other value.\n");
 
         if (scanf("%d", &ModeSelection) != 1)
         {
@@ -205,28 +202,39 @@ void SqrEqSolverMode()
         {
             CleaningBuffer();
             if (TestDiagnostics(TestSqrEq()))
+            {
                 continue;
+            }
             else
+            {
                 break;
+            }
         }
         else if (ModeSelection == 3)
         {
             CleaningBuffer();
             if (TestDiagnostics(FTestSqrEq()))
+            {
                 continue;
+            }
             else
+            {
                 break;
+            }
         }
         else if (ModeSelection == 4)
         {
             CleaningBuffer();
             RandomTest();
+
             continue;
         }
         else
             CleaningBuffer();
             printf("Program ended.");
+
         break;
+
     }
 }
 
@@ -246,6 +254,7 @@ int SolverInput(double *a, double *b, double *c)
         {
             printf("Format error.\n");
             CleaningBuffer();
+
             if (i < 4)
                 printf("Enter coefficients again:\n");
         }
@@ -254,14 +263,17 @@ int SolverInput(double *a, double *b, double *c)
             if (isfinite(*a) && isfinite(*b) && isfinite(*c))
             {
                 CleaningBuffer();
+
                 return 1;
             }
             else
             {
                 printf("Format error.\n");
                 CleaningBuffer();
+
                 if (i < 4)
                     printf("Enter coefficients again:\n");
+
                 continue;
             }
         }
@@ -297,16 +309,17 @@ void SolverOutput(double x1, double x2, int nRoots)
         case NO_ROOTS :
             printf("No roots\n");
             break;
+
         case ONE_ROOT :
             printf("1 root: %lg\n", x1);
             break;
+
         case TWO_ROOTS :
             printf("2 roots: %lg %lg\n", x1, x2);
             break;
+
         case INF_ROOTS :
             printf("Any root\n");
-            break;
-        default:
             break;
     }
 
@@ -316,10 +329,7 @@ void SolverOutput(double x1, double x2, int nRoots)
 
 void RandomTest()
 {
-    double a = 0, b = 0, c = 0, discr = 0, x1 = 0, x2 = 0;
-    a = rand();
-    b = rand();
-    c = rand();
+    double a = rand(), b = rand(), c = rand(), discr = 0, x1 = 0, x2 = 0;
     int nRoots = 0;
 
     printf("Coefficients: %lg %lg %lg\n", a, b, c);

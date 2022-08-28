@@ -105,7 +105,7 @@ void SquareSolver(double a, double b, double c, double discr, double *x1, double
 /**
  * @brief Allows the user to select the mode of the program.
  * @detailed Function asks for some value: 1 - solves the user equation, 2 - runs tests,
- * 3 - runs tests from a file, any other value - stops the program.
+ * 3 - runs tests from a file, 4 - runs random test, any other value - stops the program.
  */
 void SqrEqSolverMode();
 
